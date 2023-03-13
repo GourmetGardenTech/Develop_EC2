@@ -24,7 +24,7 @@ mumbai = data1[0][0]
 
 
 cur2 = conn.cursor()
-cur2.execute("select count(*) from inventory WHERE sku LIKE 'HYD%'")
+cur2.execute("select count(*) from inventory where warehouse_name LIKE 'Hyderabad(Standard)'")
 data2 = cur2.fetchall()
 hyderabad = data2[0][0]
 
@@ -35,32 +35,34 @@ chennai = data3[0][0]
 
 url = "https://app.yellowmessenger.com/api/engagements/notifications/v2/push?bot=x1635730302198"
 
-payload = json.dumps({
-  "userDetails": {
-    "number": "917888734634"
-  },
-  "notification": {
-    "type": "whatsapp",
-    "sender": "919108114321",
-    "templateId": "customer_update7",
-    "language": "en",
-    "params": {
-      "1": "Gourmet Garden Inventory",
-      "2": "There are "+ str(hyderabad) +" products in Hyderabad on store which are out of stock right now",
-      "3": "Please dowload the latest product list from below link",
-      "4": "https://skfb5vyli4.execute-api.ap-southeast-1.amazonaws.com/",
-      "media": {
-        "mediaLink": "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/nxuixfnicug9coi02enx"
+numbers = { "917888734634","96598088392"}
+for n in numbers:
+    payload = json.dumps({
+      "userDetails": {
+        "number": n
+      },
+      "notification": {
+        "type": "whatsapp",
+        "sender": "919108114321",
+        "templateId": "customer_update7",
+        "language": "en",
+        "params": {
+          "1": "Gourmet Garden Inventory",
+          "2": "There are "+ str(hyderabad) +" products in Hyderabad on store which are out of stock right now",
+          "3": "Please dowload the latest product list from below link",
+          "4": "https://skfb5vyli4.execute-api.ap-southeast-1.amazonaws.com/",
+          "media": {
+            "mediaLink": "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/nxuixfnicug9coi02enx"
+          }
+        }
       }
+    })
+    headers = {
+      'x-auth-token': '609fee68f1354c6e9149c42ac08024d18dc966f1ae4a14f60553e0b5be08cddd',
+      'Content-Type': 'application/json',
+      'Cookie': 'ym_xid=609fee68f1354c6e9149c42ac08024d18dc966f1ae4a14f60553e0b5be08cddd'
     }
-  }
-})
-headers = {
-  'x-auth-token': '609fee68f1354c6e9149c42ac08024d18dc966f1ae4a14f60553e0b5be08cddd',
-  'Content-Type': 'application/json',
-  'Cookie': 'ym_xid=609fee68f1354c6e9149c42ac08024d18dc966f1ae4a14f60553e0b5be08cddd'
-}
 
-response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, headers=headers, data=payload)
 
-print(response.text)
+    print(response.text)

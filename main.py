@@ -45,12 +45,12 @@ payload = json.dumps({
     "templateId": "customer_update7",
     "language": "en",
     "params": {
-      "1": "gourmet-garden-mumbai",
-      "2": "There are "+ str(banglore) +" products in Banglore, "+ str(mumbai) +" products in Mumbai, "+ str(hyderabad) +" products in Hyderabad, and "+ str(chennai) +" products in Chennai on store which are out of stock right now",
+      "1": "Gourmet Garden Inventory",
+      "2": "There are "+ str(hyderabad) +" products in Hyderabad on store which are out of stock right now",
       "3": "Please dowload the latest product list from below link",
       "4": "https://skfb5vyli4.execute-api.ap-southeast-1.amazonaws.com/",
       "media": {
-        "mediaLink": "https://www.shutterstock.com/image-photo/antwerp-belgium-december-2019-illustrative-600w-1584801160.jpg"
+        "mediaLink": "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/nxuixfnicug9coi02enx"
       }
     }
   }
